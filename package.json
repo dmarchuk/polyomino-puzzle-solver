@@ -4,5 +4,16 @@
   "main": "index.js",
   "repository": "https://github.com/dmarchuk/puzzle-solver",
   "author": "Daniel Marchuk",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development"
+  },
+  "devDependencies": {
+    "ts-loader": "^7.0.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-concat-plugin": "^3.0.0",
+    "webpack-dev-server": "^3.9.0"
+  }
 }
