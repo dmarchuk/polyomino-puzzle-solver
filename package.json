@@ -1,0 +1,8 @@
+{
+  "name": "puzzle-solver",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dmarchuk/puzzle-solver",
+  "author": "Daniel Marchuk",
+  "license": "MIT"
+}
