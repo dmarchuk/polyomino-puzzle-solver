@@ -6,9 +6,14 @@
   "author": "Daniel Marchuk",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --mode development"
+    "start": "webpack-dev-server --mode development",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "jest": "^25.4.0",
+    "ts-jest": "^25.4.0",
+    "dlxlib": "^1.0.3",
     "ts-loader": "^7.0.1",
     "typescript": "^3.8.3",
     "webpack": "^4.41.2",
