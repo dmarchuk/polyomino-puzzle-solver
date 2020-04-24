@@ -129,11 +129,11 @@ export class Solver implements ISolver {
         const rows = this.generateValidRows();
         const matrix = this.generateMatrix(rows);
         const errorElement = document.getElementById('error');
-        errorElement.classList.add('display-none');
+        errorElement.classList.add('d-none');
 
         if (!this.tilesCountEqual) {
             errorElement.innerText = `There's ${this.tilesCount} squares in the board, but total of squares in given pieces is ${this.piecesTilesCount}, so there's definitely no solution.`;
-            errorElement.classList.remove('display-none');
+            errorElement.classList.remove('d-none');
             return;
         }
 
@@ -142,7 +142,7 @@ export class Solver implements ISolver {
 
         if (!solution) {
             errorElement.innerText = 'No solutions exist for given pieces and board size.';
-            errorElement.classList.remove('display-none');
+            errorElement.classList.remove('d-none');
             return;
         }
 
