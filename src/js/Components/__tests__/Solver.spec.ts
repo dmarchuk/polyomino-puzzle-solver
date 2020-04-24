@@ -24,7 +24,7 @@ describe('Solver', () => {
             expect(solver.tilesCountEqual).toBe(false);
         })
 
-        describe('generateAllPossibleCoordinates', () => {
+        describe('getAllPossibleCoordinates', () => {
             it('generates all possible coordinates based on size', () => {
                 const expected = [
                     {x: 0, y: 0}, {x: 0, y: 1}, {x: 0, y: 2},
@@ -37,7 +37,7 @@ describe('Solver', () => {
             })
         })
 
-        describe('generateAllPossiblePositions', () => {
+        describe('getAllPossiblePositions', () => {
             it('generates all possible coordinates based on size', () => {
                 const expected = [
                     {
