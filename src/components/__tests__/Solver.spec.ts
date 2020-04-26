@@ -1,49 +1,57 @@
 import { Solver } from '../Solver';
 import { Piece } from '../Piece';
 
+let piece1;
+let piece2;
+let pieces;
+let globalSolver;
+
+beforeEach(() => {
+    piece1 = new Piece([{ x: 0, y: 0 }, { x: 0, y: 1 }]);
+    piece2 = new Piece([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }]);
+    pieces = [
+        piece1,
+        piece2,
+    ];
+    globalSolver = new Solver([3, 2], pieces);
+});
+
 describe('Solver', () => {
     const $errorElement = global.document.createElement('div');
     $errorElement.id = 'error';
     global.document.body.appendChild($errorElement);
 
     describe('Trivial Solver with 3x2 size', () => {
-        const piece1 = new Piece([{ x: 0, y: 0 }, { x: 0, y: 1 }]);
-        const piece2 = new Piece([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }]);
-        const pieces = [
-            piece1,
-            piece2,
-        ];
-        const solver = new Solver([3, 2], pieces);
-
         it('sets correct width', () => {
-            expect(solver.width).toBe(3);
+            expect(globalSolver.width).toBe(3);
         });
 
         it('sets correct height', () => {
-            expect(solver.height).toBe(2);
+            expect(globalSolver.height).toBe(2);
         });
 
         it('gets correct tilesCount', () => {
-            expect(solver.tilesCount).toBe(6);
+            expect(globalSolver.tilesCount).toBe(6);
         });
 
         it('gets correct piecesTilesCount', () => {
-            expect(solver.piecesTilesCount).toBe(6);
+            expect(globalSolver.piecesTilesCount).toBe(6);
         });
 
         it('gets correct tilesCountEqual', () => {
-            expect(solver.tilesCountEqual).toBe(true);
+            expect(globalSolver.tilesCountEqual).toBe(true);
         });
 
         describe('logError', () => {
             const error = 'error';
-            solver.logError(error);
 
             it('sets innerText of the $errorElement to given error', () => {
-                expect(solver.$errorElement.innerText).toBe(error);
+                globalSolver.logError(error);
+                expect(globalSolver.$errorElement.innerText).toBe(error);
             });
 
             it('calls console.error with given error', () => {
+                globalSolver.logError(error);
                 expect(global.console.error).toHaveBeenCalledWith(error);
             });
         });
@@ -55,7 +63,7 @@ describe('Solver', () => {
                     { x: 1, y: 0 }, { x: 1, y: 1 },
                     { x: 2, y: 0 }, { x: 2, y: 1 },
                 ];
-                const possibleCoordinates = solver.allPossiblePositions;
+                const possibleCoordinates = globalSolver.allPossiblePositions;
 
                 expect(possibleCoordinates).toStrictEqual(expected);
             });
@@ -68,7 +76,7 @@ describe('Solver', () => {
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 0 },
                 };
-                const pieceColumns = solver.generatePiecePlacementColumns(piecePlacement);
+                const pieceColumns = globalSolver.generatePiecePlacementColumns(piecePlacement);
                 const expected = [1, 0];
 
                 expect(pieceColumns).toStrictEqual(expected);
@@ -82,7 +90,7 @@ describe('Solver', () => {
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 0 },
                 };
-                const pieceColumns = solver.generateLocationColumns(piecePlacement);
+                const pieceColumns = globalSolver.generateLocationColumns(piecePlacement);
                 const expected = [0, 0, 1, 0, 1, 0];
 
                 expect(pieceColumns).toStrictEqual(expected);
@@ -99,7 +107,7 @@ describe('Solver', () => {
                     { piece: piece2, variant: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }], position: { x: 0, y: 0 } },
                     { piece: piece2, variant: [{ x: 2, y: 1 }, { x: 1, y: 1 }, { x: 0, y: 1 }, { x: 2, y: 0 }], position: { x: 0, y: 0 } },
                 ];
-                const pieceColumns = solver.generateMatrix(piecePlacements);
+                const pieceColumns = globalSolver.generateMatrix(piecePlacements);
                 const expected = [
                     [
                         1, 0, 1, 0,
@@ -157,35 +165,37 @@ describe('Solver', () => {
 
         describe('getSolutions', () => {
             describe('has solutions', () => {
-                const piecePlacements = solver.validPiecePlacements;
-                const matrix = solver.generateMatrix(piecePlacements);
-
-                solver.getSolutions(matrix);
-
                 it('gets row indexes of the first possible solution', () => {
+                    const piecePlacements = globalSolver.validPiecePlacements;
+                    const matrix = globalSolver.generateMatrix(piecePlacements);
+                    globalSolver.getSolutions(matrix);
                     const expected = {
                         value: [6, 7],
                         done: false,
                     };
 
-                    const solution = solver.solutions.next();
+                    const solution = globalSolver.solutions.next();
 
                     expect(solution).toStrictEqual(expected);
                 });
 
-                it('gets row indexes of the next possible solution', () => {
+                it('gets row indexes of the second possible solution if called 2 times', () => {
+                    const piecePlacements = globalSolver.validPiecePlacements;
+                    const matrix = globalSolver.generateMatrix(piecePlacements);
+                    globalSolver.getSolutions(matrix);
                     const expected = {
                         value: [3, 8],
                         done: false,
                     };
 
-                    const solution = solver.solutions.next();
+                    globalSolver.solutions.next();
+                    const solution = globalSolver.solutions.next();
 
                     expect(solution).toStrictEqual(expected);
                 });
             });
 
-            describe('does not have a solution', () => {
+            it('gets no solutions when pieces do not fill the board', () => {
                 const expected = {
                     value: undefined,
                     done: true,
@@ -196,12 +206,9 @@ describe('Solver', () => {
                 const matrix = noSolutionSolver.generateMatrix(piecePlacements);
 
                 noSolutionSolver.getSolutions(matrix);
+                const solution = noSolutionSolver.solutions.next();
 
-                it('gets no solutions when pieces do not fill the board', () => {
-                    const solution = noSolutionSolver.solutions.next();
-
-                    expect(solution).toStrictEqual(expected);
-                });
+                expect(solution).toStrictEqual(expected);
             });
         });
 
@@ -212,7 +219,7 @@ describe('Solver', () => {
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 0 },
                 };
-                const possibleCoordinates = solver.isPiecePlacementInside(piecePlacement);
+                const possibleCoordinates = globalSolver.isPiecePlacementInside(piecePlacement);
 
                 expect(possibleCoordinates).toBe(true);
             });
@@ -223,7 +230,7 @@ describe('Solver', () => {
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 1 },
                 };
-                const possibleCoordinates = solver.isPiecePlacementInside(piecePlacement);
+                const possibleCoordinates = globalSolver.isPiecePlacementInside(piecePlacement);
 
                 expect(possibleCoordinates).toBe(false);
             });
