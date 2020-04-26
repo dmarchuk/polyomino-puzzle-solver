@@ -40,9 +40,6 @@ This can be done by calling a `Solver.addPiece()` method,
 When you have the solver opened up in your browser (either locally or on demo page), `PolyominoSolver` property will be added to `window` object.
 Below you'l find a list of what's available on this object.
 
-### Types referenced in the API
-
-
 #### **`Solver.pieces`**  
 This will get you the list of the current pieces that are set up in the solver.
 
