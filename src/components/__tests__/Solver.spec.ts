@@ -107,7 +107,7 @@ describe('Solver', () => {
             });
         });
 
-        describe('isPositionValid', () => {
+        describe('isPiecePlacementValid', () => {
             it('returns true if the given position of the piece is inside the board', () => {
                 const piecePlacement = {
                     piece,
