@@ -6,9 +6,11 @@
   "author": "Daniel Marchuk",
   "license": "MIT",
   "scripts": {
+    "integrate": "yarn lint && yarn test && yarn build",
     "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
     "test": "jest",
-    "coverage": "jest --coverage",
+    "test:coverage": "jest --coverage",
     "lint": "eslint --ext .ts src/"
   },
   "dependencies": {
