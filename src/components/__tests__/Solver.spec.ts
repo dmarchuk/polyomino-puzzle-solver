@@ -138,6 +138,35 @@ describe('Solver', () => {
             });
         });
 
+        describe('getSolutions', () => {
+            const piecePlacements = solver.validPiecePlacements;
+            const matrix = solver.generateMatrix(piecePlacements);
+
+            solver.getSolutions(matrix);
+
+            it('gets row indexes of the first possible solution', () => {
+                const expected = {
+                    value: [6, 7],
+                    done: false,
+                };
+
+                const solution = solver.solutions.next();
+
+                expect(solution).toStrictEqual(expected);
+            });
+
+            it('gets row indexes of the next possible solution', () => {
+                const expected = {
+                    value: [3, 8],
+                    done: false,
+                };
+
+                const solution = solver.solutions.next();
+
+                expect(solution).toStrictEqual(expected);
+            });
+        });
+
         describe('isPiecePlacementInside', () => {
             it('returns true if the given position of the piece is inside the board', () => {
                 const piecePlacement = {
