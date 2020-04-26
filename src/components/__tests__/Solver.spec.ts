@@ -212,6 +212,59 @@ describe('Solver', () => {
             });
         });
 
+        describe('solve', () => {
+            describe('increments "solutionCounter" after each call', () => {
+                it('increments solutionCounter', () => {
+                    const solver = new Solver([3, 2], pieces);
+                    solver.solve();
+
+                    expect(solver.solutionCounter).toBe(1);
+                });
+
+                it('increments solutionCounter to 2 if called 2 times', () => {
+                    const solver = new Solver([3, 2], pieces);
+                    solver.solve();
+                    solver.solve();
+
+                    expect(solver.solutionCounter).toBe(2);
+                });
+            });
+
+            describe('returns correct solution', () => {
+                it('returns first solution', () => {
+                    const solver = new Solver([3, 2], pieces);
+                    const expected = {
+                        value: [6, 7],
+                        done: false,
+                    };
+                    const solution = solver.solve();
+
+                    expect(solution).toStrictEqual(expected);
+                });
+
+                it('returns second solution if called 2 times', () => {
+                    const solver = new Solver([3, 2], pieces);
+                    const expected = {
+                        value: [3, 8],
+                        done: false,
+                    };
+                    solver.solve();
+                    const solution = solver.solve();
+
+                    expect(solution).toStrictEqual(expected);
+                });
+            });
+
+            describe('no solution', () => {
+                it('returns undefined if there is no solution', () => {
+                    const noSolutionSolver = new Solver([3, 3], pieces);
+                    const solution = noSolutionSolver.solve();
+
+                    expect(solution).toBe(undefined);
+                });
+            });
+        });
+
         describe('isPiecePlacementInside', () => {
             it('returns true if the given position of the piece is inside the board', () => {
                 const piecePlacement = {
