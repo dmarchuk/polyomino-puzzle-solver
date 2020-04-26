@@ -10,7 +10,7 @@ interface IApplication {
     solve: () => void;
     loadExamplePieces: () => void;
     generateExampleSolution: () => void;
-    createSolver: (size: BoardSize, pieces: IPiece[]) => void;
+    createSolver: (size: BoardSize) => void;
     $exampleSolutionButton: HTMLButtonElement;
     $solveButton: HTMLButtonElement;
 }
@@ -34,9 +34,9 @@ export class Application implements IApplication {
         this.pieces.push(piece);
     };
 
-    createSolver = (size: BoardSize, pieces: IPiece[] = this.pieces) => {
+    createSolver = (size: BoardSize) => {
         this.enableSolveButton();
-        this.solver = new PolyominoSolver(size, pieces);
+        this.solver = new PolyominoSolver(size, this.pieces);
     };
 
     solve = () => {
@@ -53,7 +53,7 @@ export class Application implements IApplication {
 
     generateExampleSolution = () => {
         this.loadExamplePieces();
-        this.createSolver([8, 8], this.pieces);
+        this.createSolver([8, 8]);
         this.solve();
     };
 
