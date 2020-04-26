@@ -11,7 +11,7 @@ export interface ISolver {
     solutionCounter: number;
     tilesCount: number;
     tilesCountEqual: boolean;
-    solutions: Generator<number[][], Solution>;
+    solutions: Generator<number[], Solution>;
     $errorElement: HTMLElement;
 }
 
@@ -21,7 +21,7 @@ export class Solver implements ISolver {
     height: number;
     solutionCounter: number;
     tilesCountEqual: boolean;
-    solutions: Generator<number[][], Solution>;
+    solutions: Generator<number[], Solution>;
     $errorElement: HTMLElement;
 
     constructor(size: BoardSize, pieces: IPiece[]) {
@@ -76,7 +76,7 @@ export class Solver implements ISolver {
         return pieceColumns.concat(locationColumns);
     })
 
-    drawSolution = (rows, solution) => {
+    drawSolution = (piecePlacements: PiecePlacement[], solution: number[]) => {
         const canvas = (<HTMLCanvasElement>document.getElementById('canvas'));
         const context = canvas.getContext('2d');
         const size = 50;
@@ -87,7 +87,7 @@ export class Solver implements ISolver {
         context.clearRect(0, 0, this.width, this.height);
 
         solution.forEach(rowIndex => {
-            const piecePlacement: PiecePlacement = rows[rowIndex];
+            const piecePlacement: PiecePlacement = piecePlacements[rowIndex];
             const { position } = piecePlacement;
             for (const coordinates of piecePlacement.variant) {
                 const { color } = piecePlacement.piece;
