@@ -22,7 +22,3 @@ window.solve = () => {
 window.loadExamplePieces = () => {
     window.pieces = examplePieces;
 };
-
-window.loadExamplePieces();
-window.createSolver([1, 5], window.pieces);
-window.solve();
