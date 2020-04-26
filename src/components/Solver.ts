@@ -133,6 +133,8 @@ export class Solver implements ISolver {
         this.solutionCounter++;
 
         this.drawSolution(piecePlacements, solution.value);
+
+        return solution;
     }
 
     get allPossiblePositions() {
