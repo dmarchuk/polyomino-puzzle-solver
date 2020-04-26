@@ -1,15 +1,9 @@
-import { IPiece } from './Components/Piece';
-import { Solver } from './Components/Solver';
+import { IPiece } from './components/Piece';
+import { Application } from './components/Application';
 
 declare global {
     interface Window {
-        pieces: IPiece[];
-        addPiece: (coordinates: Coordinate[], color: string) => void;
-        solve: () => void;
-        loadExamplePieces: () => void;
-        generateExampleSolution: () => void;
-        createSolver: (size: BoardSize, pieces: IPiece[]) => void;
-        solver: Solver;
+        Solver: Application;
     }
 
     namespace NodeJS {

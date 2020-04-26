@@ -1,4 +1,4 @@
-import { IPiece, Piece } from './Components/Piece';
+import { IPiece, Piece } from './components/Piece';
 
 export const examplePieces: IPiece[] = [
     new Piece([{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }, { x: 1, y: 2 }, { x: 2, y: 2 }], 'grey'),
