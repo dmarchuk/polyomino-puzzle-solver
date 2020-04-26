@@ -114,7 +114,7 @@ export class Solver implements ISolver {
         this.drawSolution(piecePlacements, solution.value);
     }
 
-    isPiecePlacementValid = (piecePlacement: PiecePlacement) => {
+    isPiecePlacementInside = (piecePlacement: PiecePlacement) => {
         const { position } = piecePlacement;
         for (const coordinates of piecePlacement.variant) {
             const x = position.x + coordinates.x;
@@ -164,7 +164,7 @@ export class Solver implements ISolver {
 
     get validPiecePlacements() {
         const piecePlacements = this.allPossiblePiecePlacements;
-        return piecePlacements.filter(this.isPiecePlacementValid);
+        return piecePlacements.filter(this.isPiecePlacementInside);
     }
 
     get tilesCount() {

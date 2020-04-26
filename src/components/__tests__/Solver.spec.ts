@@ -110,14 +110,14 @@ describe('Solver', () => {
             });
         });
 
-        describe('isPiecePlacementValid', () => {
+        describe('isPiecePlacementInside', () => {
             it('returns true if the given position of the piece is inside the board', () => {
                 const piecePlacement = {
                     piece,
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 0 },
                 };
-                const possibleCoordinates = solver.isPiecePlacementValid(piecePlacement);
+                const possibleCoordinates = solver.isPiecePlacementInside(piecePlacement);
 
                 expect(possibleCoordinates).toBe(true);
             });
@@ -128,7 +128,7 @@ describe('Solver', () => {
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 1 },
                 };
-                const possibleCoordinates = solver.isPiecePlacementValid(piecePlacement);
+                const possibleCoordinates = solver.isPiecePlacementInside(piecePlacement);
 
                 expect(possibleCoordinates).toBe(false);
             });
