@@ -36,7 +36,7 @@ describe('Solver', () => {
                 ];
                 const possibleCoordinates = solver.allPossiblePositions;
 
-                expect(possibleCoordinates).toEqual(expected);
+                expect(possibleCoordinates).toStrictEqual(expected);
             });
         });
 
@@ -106,7 +106,7 @@ describe('Solver', () => {
                 ];
                 const possiblePositions = solver.allPossiblePiecePlacements;
 
-                expect(possiblePositions).toEqual(expected);
+                expect(possiblePositions).toStrictEqual(expected);
             });
         });
 
