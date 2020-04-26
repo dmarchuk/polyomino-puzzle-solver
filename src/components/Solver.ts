@@ -34,6 +34,27 @@ export class Solver implements ISolver {
         this.$errorElement = document.getElementById('error');
     }
 
+    logError = (error: string) => {
+        this.$errorElement.innerText = error;
+        this.$errorElement.classList.remove('d-none');
+
+        // eslint-disable-next-line no-console
+        console.error(error);
+    }
+
+    isPiecePlacementInside = (piecePlacement: PiecePlacement) => {
+        const { position } = piecePlacement;
+        for (const coordinates of piecePlacement.variant) {
+            const x = position.x + coordinates.x;
+            const y = position.y + coordinates.y;
+
+            if (x >= this.width || y >= this.height) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     generatePiecePlacementColumns = (piecePlacement: PiecePlacement) => {
         const pieceIndex = this.pieces.findIndex(piece => piece === piecePlacement.piece);
         return createRectangleBlock(0, this.pieces.length).map((_, index) => (index === pieceIndex ? 1 : 0));
@@ -112,27 +133,6 @@ export class Solver implements ISolver {
         this.solutionCounter++;
 
         this.drawSolution(piecePlacements, solution.value);
-    }
-
-    isPiecePlacementInside = (piecePlacement: PiecePlacement) => {
-        const { position } = piecePlacement;
-        for (const coordinates of piecePlacement.variant) {
-            const x = position.x + coordinates.x;
-            const y = position.y + coordinates.y;
-
-            if (x >= this.width || y >= this.height) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    logError = (error: string) => {
-        this.$errorElement.innerText = error;
-        this.$errorElement.classList.remove('d-none');
-
-        // eslint-disable-next-line no-console
-        console.error(error);
     }
 
     get allPossiblePositions() {
