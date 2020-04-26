@@ -5,11 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="//bootswatch.com/4/darkly/bootstrap.css" media="screen">
-    <link rel="stylesheet" href="//bootswatch.com/_assets/css/custom.min.css" media="screen">
-    <title>Puzzle builder</title>
+    <title>Polyomino puzzle solver</title>
 </head>
 <body>
     <div class="container">
+        <div class="row my-2">
+            <div class="col-12">
+                <h1 class="text-center">Polyomino puzzle solver</h1>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-12">
+                <h4>Buttons</h4>
+                <ul>
+                    <li>"Try example solution" button runs example solution with predefined pieces and board sized 8x8.</li>
+                    <li>"Solve" button tries to find a solution. If there are multiple solutions, each click on this button will draw the next solution.</li>
+                </ul>
+            </div>
+            <div class="col-12 mt-4">
+                <h4>Instructions</h4>
+                <ol>
+                    <li>Open up your browser console.</li>
+                    <li>
+                        <div>Add pieces by calling <code>Solver.addPiece();</code> where first parameter is array of coordinates objects and second is optional color. Examples:</div>
+                        <div><code>Solver.addPiece([{ x: 0, y: 0 }, { x: 0, y: 1 }], 'green');</code></div>
+                        <div><code>Solver.addPiece([{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }], 'grey');</code></div>
+                    </li>
+                    <li>
+                        <div>Create solver board by calling <code>Solver.createSolver();</code> with an array where first element is the board width and second is board height, like so:</div>
+                        <div><code>Solver.createSolver([1, 5]);</code></div>
+                    </li>
+                    <li>
+                        <div>Now to find the solution, either click the "Solve" button or run the 'solve' command manually:</div>
+                        <div><code>Solver.solve();</code></div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-12 text-center">
+                <button class="btn btn-info" id="example-solution-button">Try example solution</button>
+                <button class="btn btn-success" id="solve-button" disabled>Solve</button>
+            </div>
+        </div>
         <div class="row my-2">
             <div class="col-12 text-center">
                 <canvas id="canvas" style="border:1px solid #d3d3d3;"></canvas>
