@@ -121,6 +121,13 @@ yarn test:coverage
 yarn lint
 ```
 
+## Some things that should be finished:
+- [ ] Tests for PolyominoSolver.ts - most crucial parts are tested, but some things are not, especially the correct drawing on canvas should be tested.
+- [ ] Display the current pieces in a sidebar.
+- [ ] Application.ts should have an option to delete a piece by given index.
+- [ ] User should be able to delete a piece from the pieces sidebar.
+- [ ] Some more intuitive way of adding pieces.
+
 ## Author
 
 **Daniel Marchuk**
