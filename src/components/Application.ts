@@ -1,11 +1,11 @@
 import { BoardSize, Coordinate } from '../types';
 import { examplePieces } from '../constants';
 import { IPiece, Piece } from './Piece';
-import { Solver } from './Solver';
+import { PolyominoSolver } from './PolyominoSolver';
 
 interface IApplication {
     pieces: IPiece[];
-    solver: Solver;
+    solver: PolyominoSolver;
     addPiece: (coordinates: Coordinate[], color: string) => void;
     solve: () => void;
     loadExamplePieces: () => void;
@@ -17,7 +17,7 @@ interface IApplication {
 
 export class Application implements IApplication {
     pieces = [];
-    solver: Solver;
+    solver: PolyominoSolver;
     $exampleSolutionButton: HTMLButtonElement;
     $solveButton: HTMLButtonElement;
 
@@ -36,7 +36,7 @@ export class Application implements IApplication {
 
     createSolver = (size: BoardSize, pieces: IPiece[] = this.pieces) => {
         this.enableSolveButton();
-        this.solver = new Solver(size, pieces);
+        this.solver = new PolyominoSolver(size, pieces);
     };
 
     solve = () => {

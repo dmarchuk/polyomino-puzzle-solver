@@ -1,4 +1,4 @@
-import { Solver } from '../Solver';
+import { PolyominoSolver } from '../PolyominoSolver';
 import { Piece } from '../Piece';
 
 let piece1;
@@ -13,7 +13,7 @@ beforeEach(() => {
         piece1,
         piece2,
     ];
-    globalSolver = new Solver([3, 2], pieces);
+    globalSolver = new PolyominoSolver([3, 2], pieces);
 });
 
 describe('Solver', () => {
@@ -142,7 +142,7 @@ describe('Solver', () => {
         describe('allPossiblePiecePlacements', () => {
             it('generates all possible coordinates based on size', () => {
                 const onePieces = [piece1];
-                const onePieceSolver = new Solver([3, 2], onePieces);
+                const onePieceSolver = new PolyominoSolver([3, 2], onePieces);
                 const expected = [
                     { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 0, y: 1 }], position: { x: 0, y: 0 } },
                     { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 0, y: 1 }], position: { x: 0, y: 1 } },
@@ -200,7 +200,7 @@ describe('Solver', () => {
                     value: undefined,
                     done: true,
                 };
-                const noSolutionSolver = new Solver([3, 3], pieces);
+                const noSolutionSolver = new PolyominoSolver([3, 3], pieces);
 
                 const piecePlacements = noSolutionSolver.validPiecePlacements;
                 const matrix = noSolutionSolver.generateMatrix(piecePlacements);
@@ -219,14 +219,14 @@ describe('Solver', () => {
 
             describe('increments "solutionCounter" after each call', () => {
                 it('increments solutionCounter', () => {
-                    const solver = new Solver([3, 2], pieces);
+                    const solver = new PolyominoSolver([3, 2], pieces);
                     solver.solve();
 
                     expect(solver.solutionCounter).toBe(1);
                 });
 
                 it('increments solutionCounter to 2 if called 2 times', () => {
-                    const solver = new Solver([3, 2], pieces);
+                    const solver = new PolyominoSolver([3, 2], pieces);
                     solver.solve();
                     solver.solve();
 
@@ -236,7 +236,7 @@ describe('Solver', () => {
 
             describe('returns correct solution', () => {
                 it('returns first solution', () => {
-                    const solver = new Solver([3, 2], pieces);
+                    const solver = new PolyominoSolver([3, 2], pieces);
                     const expected = {
                         value: [6, 7],
                         done: false,
@@ -247,7 +247,7 @@ describe('Solver', () => {
                 });
 
                 it('returns second solution if called 2 times', () => {
-                    const solver = new Solver([3, 2], pieces);
+                    const solver = new PolyominoSolver([3, 2], pieces);
                     const expected = {
                         value: [3, 8],
                         done: false,
@@ -261,7 +261,7 @@ describe('Solver', () => {
 
             describe('no solution', () => {
                 it('returns undefined if there is no solution', () => {
-                    const noSolutionSolver = new Solver([3, 3], pieces);
+                    const noSolutionSolver = new PolyominoSolver([3, 3], pieces);
                     const solution = noSolutionSolver.solve();
 
                     expect(solution).toBe(undefined);

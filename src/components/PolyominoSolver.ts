@@ -15,7 +15,7 @@ export interface ISolver {
     $errorElement: HTMLElement;
 }
 
-export class Solver implements ISolver {
+export class PolyominoSolver implements ISolver {
     pieces: IPiece[];
     width: number;
     height: number;
