@@ -3,12 +3,14 @@ import { Piece } from '../Piece';
 describe('Piece', () => {
     describe('Piece with coordinates generating N pattern', () => {
         const coordinates = [{ x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: 0, y: 3 }];
-        const piece = new Piece(coordinates);
+        const piece = new Piece(coordinates, 'green');
+
+        it('sets color correctly', () => {
+            expect(piece.color).toBe('green');
+        });
 
         it('counts number of tiles', () => {
-            const expected = 5;
-
-            expect(piece.numberOfTiles).toBe(expected);
+            expect(piece.numberOfTiles).toBe(5);
         });
 
         it('generates all unique variants', () => {
