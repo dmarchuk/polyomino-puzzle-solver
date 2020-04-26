@@ -213,6 +213,10 @@ describe('Solver', () => {
         });
 
         describe('solve', () => {
+            const $canvasElement = global.document.createElement('canvas');
+            $canvasElement.id = 'canvas';
+            global.document.body.appendChild($canvasElement);
+
             describe('increments "solutionCounter" after each call', () => {
                 it('increments solutionCounter', () => {
                     const solver = new Solver([3, 2], pieces);
