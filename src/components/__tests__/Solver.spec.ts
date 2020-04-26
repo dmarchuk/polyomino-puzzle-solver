@@ -156,31 +156,52 @@ describe('Solver', () => {
         });
 
         describe('getSolutions', () => {
-            const piecePlacements = solver.validPiecePlacements;
-            const matrix = solver.generateMatrix(piecePlacements);
+            describe('has solutions', () => {
+                const piecePlacements = solver.validPiecePlacements;
+                const matrix = solver.generateMatrix(piecePlacements);
 
-            solver.getSolutions(matrix);
+                solver.getSolutions(matrix);
 
-            it('gets row indexes of the first possible solution', () => {
-                const expected = {
-                    value: [6, 7],
-                    done: false,
-                };
+                it('gets row indexes of the first possible solution', () => {
+                    const expected = {
+                        value: [6, 7],
+                        done: false,
+                    };
 
-                const solution = solver.solutions.next();
+                    const solution = solver.solutions.next();
 
-                expect(solution).toStrictEqual(expected);
+                    expect(solution).toStrictEqual(expected);
+                });
+
+                it('gets row indexes of the next possible solution', () => {
+                    const expected = {
+                        value: [3, 8],
+                        done: false,
+                    };
+
+                    const solution = solver.solutions.next();
+
+                    expect(solution).toStrictEqual(expected);
+                });
             });
 
-            it('gets row indexes of the next possible solution', () => {
+            describe('does not have a solution', () => {
                 const expected = {
-                    value: [3, 8],
-                    done: false,
+                    value: undefined,
+                    done: true,
                 };
+                const noSolutionSolver = new Solver([3, 3], pieces);
 
-                const solution = solver.solutions.next();
+                const piecePlacements = noSolutionSolver.validPiecePlacements;
+                const matrix = noSolutionSolver.generateMatrix(piecePlacements);
 
-                expect(solution).toStrictEqual(expected);
+                noSolutionSolver.getSolutions(matrix);
+
+                it('gets no solutions when pieces do not fill the board', () => {
+                    const solution = noSolutionSolver.solutions.next();
+
+                    expect(solution).toStrictEqual(expected);
+                });
             });
         });
 
