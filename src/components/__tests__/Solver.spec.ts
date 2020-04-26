@@ -3,7 +3,7 @@ import { Piece } from '../Piece';
 
 describe('Solver', () => {
     describe('Trivial Solver with 3x2 size', () => {
-        const piece1 = new Piece([{ x: 0, y: 0 }, { x: 1, y: 1 }]);
+        const piece1 = new Piece([{ x: 0, y: 0 }, { x: 0, y: 1 }]);
         const piece2 = new Piece([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }]);
         const pieces = [
             piece1,
@@ -119,66 +119,18 @@ describe('Solver', () => {
                 const onePieces = [piece1];
                 const onePieceSolver = new Solver([3, 2], onePieces);
                 const expected = [
-                    {
-                        piece: piece1,
-                        position: { x: 0, y: 0 },
-                        variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 0, y: 1 },
-                        variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 1, y: 0 },
-                        variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 1, y: 1 },
-                        variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 2, y: 0 },
-                        variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 2, y: 1 },
-                        variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 0, y: 0 },
-                        variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 0, y: 1 },
-                        variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 1, y: 0 },
-                        variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 1, y: 1 },
-                        variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 2, y: 0 },
-                        variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
-                    },
-                    {
-                        piece: piece1,
-                        position: { x: 2, y: 1 },
-                        variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
-                    },
+                    { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 0, y: 1 }], position: { x: 0, y: 0 } },
+                    { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 0, y: 1 }], position: { x: 0, y: 1 } },
+                    { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 0, y: 1 }], position: { x: 1, y: 0 } },
+                    { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 0, y: 1 }], position: { x: 1, y: 1 } },
+                    { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 0, y: 1 }], position: { x: 2, y: 0 } },
+                    { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 0, y: 1 }], position: { x: 2, y: 1 } },
+                    { piece: piece1, variant: [{ x: 1, y: 0 }, { x: 0, y: 0 }], position: { x: 0, y: 0 } },
+                    { piece: piece1, variant: [{ x: 1, y: 0 }, { x: 0, y: 0 }], position: { x: 0, y: 1 } },
+                    { piece: piece1, variant: [{ x: 1, y: 0 }, { x: 0, y: 0 }], position: { x: 1, y: 0 } },
+                    { piece: piece1, variant: [{ x: 1, y: 0 }, { x: 0, y: 0 }], position: { x: 1, y: 1 } },
+                    { piece: piece1, variant: [{ x: 1, y: 0 }, { x: 0, y: 0 }], position: { x: 2, y: 0 } },
+                    { piece: piece1, variant: [{ x: 1, y: 0 }, { x: 0, y: 0 }], position: { x: 2, y: 1 } },
                 ];
                 const possiblePositions = onePieceSolver.allPossiblePiecePlacements;
 
