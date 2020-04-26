@@ -72,6 +72,48 @@ describe('Solver', () => {
             });
         });
 
+        describe('generateMatrix', () => {
+            it('generates matrix from given piece placements to represent the problem as "exact cover" problem', () => {
+                const piecePlacements = [
+                    { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }], position: { x: 0, y: 0 } },
+                    { piece: piece1, variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }], position: { x: 1, y: 0 } },
+                    { piece: piece1, variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }], position: { x: 0, y: 0 } },
+                    { piece: piece1, variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }], position: { x: 1, y: 0 } },
+                    { piece: piece2, variant: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }], position: { x: 0, y: 0 } },
+                    { piece: piece2, variant: [{ x: 2, y: 1 }, { x: 1, y: 1 }, { x: 0, y: 1 }, { x: 2, y: 0 }], position: { x: 0, y: 0 } },
+                ];
+                const pieceColumns = solver.generateMatrix(piecePlacements);
+                const expected = [
+                    [
+                        1, 0, 1, 0,
+                        0, 0, 1, 0,
+                    ],
+                    [
+                        1, 0, 0, 1,
+                        0, 0, 0, 1,
+                    ],
+                    [
+                        1, 0, 0, 1,
+                        0, 1, 0, 0,
+                    ],
+                    [
+                        1, 0, 0, 0,
+                        1, 0, 1, 0,
+                    ],
+                    [
+                        0, 1, 1, 1,
+                        1, 1, 0, 0,
+                    ],
+                    [
+                        0, 1, 0, 0,
+                        1, 1, 1, 1,
+                    ],
+                ];
+
+                expect(pieceColumns).toStrictEqual(expected);
+            });
+        });
+
         describe('allPossiblePiecePlacements', () => {
             it('generates all possible coordinates based on size', () => {
                 const onePieces = [piece1];
