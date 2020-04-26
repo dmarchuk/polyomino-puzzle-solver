@@ -58,7 +58,7 @@ This generates a piece with an L-like shape:
 # 
 ##
 ```
-###### `color` - string, for example `violet` or `#F0F0F0`.
+###### `color` - string, for example `violet` or `#F0F0F0`. This is optional, if not provided, random color will be generated.
 
 #### **`Solver.createSolver(size: [number, number])`**  
 This will create a solver object with defined pieces and given board size.
