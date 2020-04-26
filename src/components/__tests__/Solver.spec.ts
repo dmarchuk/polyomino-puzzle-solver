@@ -3,8 +3,12 @@ import { Piece } from '../Piece';
 
 describe('Solver', () => {
     describe('Trivial Solver with 3x2 size', () => {
-        const piece = new Piece([{ x: 0, y: 0 }, { x: 1, y: 1 }], 'green');
-        const pieces = [piece];
+        const piece1 = new Piece([{ x: 0, y: 0 }, { x: 1, y: 1 }]);
+        const piece2 = new Piece([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }]);
+        const pieces = [
+            piece1,
+            piece2,
+        ];
         const solver = new Solver([3, 2], pieces);
 
         it('sets correct width', () => {
@@ -20,11 +24,11 @@ describe('Solver', () => {
         });
 
         it('gets correct piecesTilesCount', () => {
-            expect(solver.piecesTilesCount).toBe(2);
+            expect(solver.piecesTilesCount).toBe(6);
         });
 
         it('gets correct tilesCountEqual', () => {
-            expect(solver.tilesCountEqual).toBe(false);
+            expect(solver.tilesCountEqual).toBe(true);
         });
 
         describe('allPossibleCoordinates', () => {
@@ -42,18 +46,12 @@ describe('Solver', () => {
 
         describe('generatePiecePlacementColumns', () => {
             it('generates columns array for given piece placement', () => {
-                const largePiece = new Piece([{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 2 }, { x: 1, y: 3 }]);
-                const morePieces = [
-                    piece,
-                    largePiece,
-                ];
-                const morePiecesSolver = new Solver([3, 2], morePieces);
                 const piecePlacement = {
-                    piece,
+                    piece: piece1,
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 0 },
                 };
-                const pieceColumns = morePiecesSolver.generatePiecePlacementColumns(piecePlacement);
+                const pieceColumns = solver.generatePiecePlacementColumns(piecePlacement);
                 const expected = [1, 0];
 
                 expect(pieceColumns).toStrictEqual(expected);
@@ -62,69 +60,71 @@ describe('Solver', () => {
 
         describe('allPossiblePiecePlacements', () => {
             it('generates all possible coordinates based on size', () => {
+                const onePieces = [piece1];
+                const onePieceSolver = new Solver([3, 2], onePieces);
                 const expected = [
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 0, y: 0 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 0, y: 1 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 1, y: 0 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 1, y: 1 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 2, y: 0 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 2, y: 1 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 0, y: 0 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 0, y: 1 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 1, y: 0 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 1, y: 1 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 2, y: 0 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
-                        piece,
+                        piece: piece1,
                         position: { x: 2, y: 1 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                 ];
-                const possiblePositions = solver.allPossiblePiecePlacements;
+                const possiblePositions = onePieceSolver.allPossiblePiecePlacements;
 
                 expect(possiblePositions).toStrictEqual(expected);
             });
@@ -133,7 +133,7 @@ describe('Solver', () => {
         describe('isPiecePlacementInside', () => {
             it('returns true if the given position of the piece is inside the board', () => {
                 const piecePlacement = {
-                    piece,
+                    piece: piece1,
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 0 },
                 };
@@ -144,7 +144,7 @@ describe('Solver', () => {
 
             it('returns false if the given position of the piece overflows the board', () => {
                 const piecePlacement = {
-                    piece,
+                    piece: piece1,
                     variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     position: { x: 1, y: 1 },
                 };
