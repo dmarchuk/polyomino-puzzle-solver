@@ -97,7 +97,7 @@ This method will try to find a solution for the given board size and given piece
 Every consecutive call will try to find the next solution.
 
 #### **`Solver.loadExamplePieces()`**
-This method will load up some example pieces to `Solver.pieces` se we can use them later.
+This method will load up some example pieces to `Solver.pieces` se we can use them later. You can see these piece definitions [here](https://github.com/dmarchuk/polyomino-puzzle-solver/blob/master/src/constants.ts#L3).
 
 
 #### **`Solver.generateExampleSolution()`**
