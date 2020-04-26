@@ -22,3 +22,9 @@ window.solve = () => {
 window.loadExamplePieces = () => {
     window.pieces = examplePieces;
 };
+
+window.generateExampleSolution = () => {
+    window.loadExamplePieces();
+    window.createSolver([8, 8], window.pieces);
+    window.solve();
+};

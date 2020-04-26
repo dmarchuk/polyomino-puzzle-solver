@@ -7,6 +7,7 @@ declare global {
         addPiece: (coordinates: Coordinate[], color: string) => void;
         solve: () => void;
         loadExamplePieces: () => void;
+        generateExampleSolution: () => void;
         createSolver: (size: BoardSize, pieces: IPiece[]) => void;
         solver: Solver;
     }
