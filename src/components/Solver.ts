@@ -49,9 +49,9 @@ export class Solver implements ISolver {
         return createRectangleBlock(0, this.tilesCount).map((_, index) => (locationIndices.includes(index) ? 1 : 0));
     }
 
-    generateMatrix = (rows: PiecePlacement[]) => rows.map(row => {
-        const pieceColumns = this.generatePieceColumns(row);
-        const locationColumns = this.generateLocationColumns(row);
+    generateMatrix = (piecePlacements: PiecePlacement[]) => piecePlacements.map(piecePlacement => {
+        const pieceColumns = this.generatePieceColumns(piecePlacement);
+        const locationColumns = this.generateLocationColumns(piecePlacement);
         return pieceColumns.concat(locationColumns);
     })
 
@@ -86,8 +86,8 @@ export class Solver implements ISolver {
     }
 
     solve = () => {
-        const rows = this.validRows;
-        const matrix = this.generateMatrix(rows);
+        const piecePlacements = this.validPiecePlacements;
+        const matrix = this.generateMatrix(piecePlacements);
         this.$errorElement.classList.add('d-none');
 
         if (!this.tilesCountEqual) {
@@ -111,7 +111,7 @@ export class Solver implements ISolver {
 
         this.solutionCounter++;
 
-        this.drawSolution(rows, solution.value);
+        this.drawSolution(piecePlacements, solution.value);
     }
 
     isPiecePlacementValid = (piecePlacement: PiecePlacement) => {
@@ -162,7 +162,7 @@ export class Solver implements ISolver {
         return result;
     }
 
-    get validRows() {
+    get validPiecePlacements() {
         const piecePlacements = this.allPossiblePiecePlacements;
         return piecePlacements.filter(this.isPiecePlacementValid);
     }

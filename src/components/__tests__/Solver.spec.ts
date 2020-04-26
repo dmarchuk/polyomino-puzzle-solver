@@ -7,20 +7,23 @@ describe('Solver', () => {
         const pieces = [piece];
         const solver = new Solver([3, 2], pieces);
 
-        it('sets correct width and height', () => {
+        it('sets correct width', () => {
             expect(solver.width).toBe(3);
+        });
+
+        it('sets correct height', () => {
             expect(solver.height).toBe(2);
         });
 
-        it('sets correct tilesCount', () => {
+        it('gets correct tilesCount', () => {
             expect(solver.tilesCount).toBe(6);
         });
 
-        it('sets correct piecesTilesCount', () => {
+        it('gets correct piecesTilesCount', () => {
             expect(solver.piecesTilesCount).toBe(2);
         });
 
-        it('sets correct tilesCountEqual', () => {
+        it('gets correct tilesCountEqual', () => {
             expect(solver.tilesCountEqual).toBe(false);
         });
 
@@ -37,67 +40,67 @@ describe('Solver', () => {
             });
         });
 
-        describe('allPossiblePiecePositions', () => {
+        describe('allPossiblePiecePlacements', () => {
             it('generates all possible coordinates based on size', () => {
                 const expected = [
                     {
                         piece,
-                        coordinate: { x: 0, y: 0 },
+                        position: { x: 0, y: 0 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 0, y: 1 },
+                        position: { x: 0, y: 1 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 1, y: 0 },
+                        position: { x: 1, y: 0 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 1, y: 1 },
+                        position: { x: 1, y: 1 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 2, y: 0 },
+                        position: { x: 2, y: 0 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 2, y: 1 },
+                        position: { x: 2, y: 1 },
                         variant: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 0, y: 0 },
+                        position: { x: 0, y: 0 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 0, y: 1 },
+                        position: { x: 0, y: 1 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 1, y: 0 },
+                        position: { x: 1, y: 0 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 1, y: 1 },
+                        position: { x: 1, y: 1 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 2, y: 0 },
+                        position: { x: 2, y: 0 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                     {
                         piece,
-                        coordinate: { x: 2, y: 1 },
+                        position: { x: 2, y: 1 },
                         variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
                     },
                 ];
