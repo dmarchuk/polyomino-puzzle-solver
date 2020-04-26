@@ -97,6 +97,12 @@ yarn start
 
 This will start a development server on http://localhost:8080.
 
+### Integrate - should be called for example in case of CI (runs linter, tests and build the bundle)
+
+```sh
+yarn integrate
+```
+
 ### Build the bundle
 
 ```sh
