@@ -34,7 +34,7 @@ export class Solver implements ISolver {
         this.$errorElement = document.getElementById('error');
     }
 
-    generatePieceColumns = (piecePlacement: PiecePlacement) => {
+    generatePiecePlacementColumns = (piecePlacement: PiecePlacement) => {
         const pieceIndex = this.pieces.findIndex(piece => piece === piecePlacement.piece);
         return createRectangleBlock(0, this.pieces.length).map((_, index) => (index === pieceIndex ? 1 : 0));
     }
@@ -50,7 +50,7 @@ export class Solver implements ISolver {
     }
 
     generateMatrix = (piecePlacements: PiecePlacement[]) => piecePlacements.map(piecePlacement => {
-        const pieceColumns = this.generatePieceColumns(piecePlacement);
+        const pieceColumns = this.generatePiecePlacementColumns(piecePlacement);
         const locationColumns = this.generateLocationColumns(piecePlacement);
         return pieceColumns.concat(locationColumns);
     })

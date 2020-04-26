@@ -40,6 +40,26 @@ describe('Solver', () => {
             });
         });
 
+        describe('generatePiecePlacementColumns', () => {
+            it('generates columns array for given piece placement', () => {
+                const largePiece = new Piece([{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 2 }, { x: 1, y: 3 }]);
+                const morePieces = [
+                    piece,
+                    largePiece,
+                ];
+                const morePiecesSolver = new Solver([3, 2], morePieces);
+                const piecePlacement = {
+                    piece,
+                    variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
+                    position: { x: 1, y: 0 },
+                };
+                const pieceColumns = morePiecesSolver.generatePiecePlacementColumns(piecePlacement);
+                const expected = [1, 0];
+
+                expect(pieceColumns).toStrictEqual(expected);
+            });
+        });
+
         describe('allPossiblePiecePlacements', () => {
             it('generates all possible coordinates based on size', () => {
                 const expected = [
