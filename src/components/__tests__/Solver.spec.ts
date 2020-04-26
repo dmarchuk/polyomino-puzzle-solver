@@ -58,6 +58,20 @@ describe('Solver', () => {
             });
         });
 
+        describe('generateLocationColumns', () => {
+            it('generates array of location columns for given piece placement', () => {
+                const piecePlacement = {
+                    piece: piece1,
+                    variant: [{ x: 1, y: 0 }, { x: 0, y: 1 }],
+                    position: { x: 1, y: 0 },
+                };
+                const pieceColumns = solver.generateLocationColumns(piecePlacement);
+                const expected = [0, 0, 1, 0, 1, 0];
+
+                expect(pieceColumns).toStrictEqual(expected);
+            });
+        });
+
         describe('allPossiblePiecePlacements', () => {
             it('generates all possible coordinates based on size', () => {
                 const onePieces = [piece1];
