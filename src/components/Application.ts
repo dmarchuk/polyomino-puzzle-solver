@@ -40,6 +40,10 @@ export class Application implements IApplication {
     };
 
     solve = () => {
+        if (!this.solver) {
+            throw Error('You need to create a solver with Solver.createSolver(size: [number, number]) first.');
+        }
+
         this.solver.solve();
     };
 
