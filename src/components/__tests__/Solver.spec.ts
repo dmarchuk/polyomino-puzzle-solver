@@ -2,6 +2,10 @@ import { Solver } from '../Solver';
 import { Piece } from '../Piece';
 
 describe('Solver', () => {
+    const $errorElement = global.document.createElement('div');
+    $errorElement.id = 'error';
+    global.document.body.appendChild($errorElement);
+
     describe('Trivial Solver with 3x2 size', () => {
         const piece1 = new Piece([{ x: 0, y: 0 }, { x: 0, y: 1 }]);
         const piece2 = new Piece([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 0, y: 1 }]);
@@ -29,6 +33,19 @@ describe('Solver', () => {
 
         it('gets correct tilesCountEqual', () => {
             expect(solver.tilesCountEqual).toBe(true);
+        });
+
+        describe('logError', () => {
+            const error = 'error';
+            solver.logError(error);
+
+            it('sets innerText of the $errorElement to given error', () => {
+                expect(solver.$errorElement.innerText).toBe(error);
+            });
+
+            it('calls console.error with given error', () => {
+                expect(global.console.error).toHaveBeenCalledWith(error);
+            });
         });
 
         describe('allPossibleCoordinates', () => {
