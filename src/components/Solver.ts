@@ -87,13 +87,12 @@ export class Solver implements ISolver {
 
     solve = () => {
         const piecePlacements = this.validPiecePlacements;
-        console.log(JSON.stringify(piecePlacements))
         const matrix = this.generateMatrix(piecePlacements);
-        // this.$errorElement.classList.add('d-none');
+        this.$errorElement.classList.add('d-none');
 
         if (!this.tilesCountEqual) {
             const error = `There's ${this.tilesCount} squares in the board, but total of squares in given pieces is ${this.piecesTilesCount}, so there's definitely no solution.`;
-            // this.logError(error);
+            this.logError(error);
             return;
         }
 
@@ -106,13 +105,13 @@ export class Solver implements ISolver {
         if (!solution.value) {
             const moreText = this.solutionCounter === 0 ? '' : ' more';
             const error = `No${moreText} solutions exist for given pieces and board size.`;
-            // this.logError(error);
+            this.logError(error);
             return;
         }
 
         this.solutionCounter++;
 
-        // this.drawSolution(piecePlacements, solution.value);
+        this.drawSolution(piecePlacements, solution.value);
     }
 
     isPiecePlacementInside = (piecePlacement: PiecePlacement) => {
