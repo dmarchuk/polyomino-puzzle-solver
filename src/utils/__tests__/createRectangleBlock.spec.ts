@@ -16,7 +16,7 @@ describe('createRectangleBlock', () => {
 
         expect(result).toStrictEqual(expected);
     });
-    
+
     it('generates 2d array of 1s with 5 columns and 4 rows', () => {
         const width = 5;
         const height = 4;

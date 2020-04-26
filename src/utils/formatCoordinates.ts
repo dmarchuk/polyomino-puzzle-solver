@@ -8,9 +8,9 @@ export const formatCoordinates = (coordinates: Coordinate[]) => {
     const height = getHeight(coordinates);
     const result = createRectangleBlock(width, height);
 
-    coordinates.forEach(({x, y}) => {
+    coordinates.forEach(({ x, y }) => {
         result[y][x] = 1;
     });
 
     return result;
-}
+};

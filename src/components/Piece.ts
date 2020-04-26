@@ -21,7 +21,7 @@ export class Piece implements IPiece {
         this.color = color;
     }
 
-    private generateAllVariants = () => {
+    private generateAllVariants() {
         const north = this.coordinates;
         const west = rotateCoordinatesBy90Degrees(north);
         const south = rotateCoordinatesBy90Degrees(west);
@@ -34,7 +34,7 @@ export class Piece implements IPiece {
         ];
     }
 
-    private generateUniqueVariants = () => {
+    private generateUniqueVariants() {
         const hashes = new Set();
         const variants = this.generateAllVariants();
         return variants.filter(variant => {

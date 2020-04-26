@@ -1,0 +1,62 @@
+module.exports = {
+    env: {
+        browser: true,
+        es6: true,
+        jest: true
+    },
+    extends: [
+        'airbnb-base',
+    ],
+    globals: {
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
+    },
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+    },
+    plugins: [
+        '@typescript-eslint',
+        "jest"
+    ],
+    rules: {
+        'arrow-parens': ['error', 'as-needed'],
+        'comma-dangle': ['error', 'always-multiline'],
+        'consistent-return': ['off'],
+        curly: ['error', 'all'],
+        'function-paren-newline': ['off'],
+        indent: ['error', 4],
+        'linebreak-style': ['off'],
+        'max-len': ['error', 180],
+        'no-alert': ['error'],
+        'no-cond-assign': ['error', 'except-parens'],
+        'no-constant-condition': ['error'],
+        'no-console': ['error'],
+        'no-mixed-operators': ['off'],
+        'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1, maxBOF: 0 }],
+        'no-param-reassign': ['error', { props: false }],
+        'no-plusplus': ['off'],
+        'no-return-assign': ['error', 'except-parens'],
+        'no-restricted-syntax': ['off'],
+        'no-use-before-define': ['off'],
+        'no-unused-vars': 'off',
+        'no-var': ['off'],
+        'lines-between-class-members': ['off'],
+        'object-curly-newline': ['error', { multiline: true, consistent: true }],
+        'operator-linebreak': ['error', 'after', { overrides: { '?': 'ignore', ':': 'ignore' } }],
+        'prefer-destructuring': ['error', { object: true, array: false }],
+        'prefer-template': ['off'],
+        quotes: ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+        'vars-on-top': ['off'],
+        '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
+
+        'import/default': ['off'],
+        'import/first': ['off'],
+        'import/order': ['error', { 'newlines-between': 'ignore' }],
+        'import/named': ['off'],
+        'import/extensions': ['off'],
+        'import/no-unresolved': ['off'],
+        'import/prefer-default-export': ['off'],
+    },
+};
