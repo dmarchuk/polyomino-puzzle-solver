@@ -34,7 +34,30 @@ Solver.generateExampleSolution();
 
 ### Running with custom pieces and board size
 To run the solver with your custom pieces and board size, you must first configure your pieces.
-This can be done by calling a `Solver.addPiece()` method,  
+This can be done by calling a `Solver.addPiece()` method with the coordinates and optional color:
+```javascript
+Solver.addPiece([{ x: 0, y: 0 }, { x: 0, y: 1 }], 'green');
+Solver.addPiece([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }], 'grey');
+```
+
+This will add green piece:
+```
+##
+```
+
+And a grey piece:
+```
+###
+  #
+```
+
+Once you have the desired pieces set up, create solver board by calling `Solver.createSolver();` with an array where first element is the board width and second is board height, like so:
+```javascript
+Solver.createSolver([2, 3]);
+```
+
+After that, you can either click on "Solve" button to generate a solution or run `Solver.solve();` command in the console. In this particular example, you should see a generated solution.
+If you click on the "Solve" button again or run the `Solve.solve();` command again, you should see another generated solution.
 
 ## API
 When you have the solver opened up in your browser (either locally or on demo page), `PolyominoSolver` property will be added to `window` object.
