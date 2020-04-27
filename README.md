@@ -61,7 +61,7 @@ If you click on the "Solve" button again or run the `Solve.solve();` command aga
 
 ## API
 When you have the solver opened up in your browser (either locally or on demo page), `PolyominoSolver` property will be added to `window` object.
-Below you'l find a list of what's available on this object.
+Below you'll find a list of what's available on this object.
 
 #### **`Solver.pieces`**  
 This will get you the list of the current pieces that are set up in the solver.
