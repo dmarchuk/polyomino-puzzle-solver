@@ -1,8 +1,8 @@
-# Welcome to Polyomino puzzle solver 
+# WPolyomino puzzle solver 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/facebook/react/blob/master/LICENSE)
 
-Polyomino solver for polyomino puzzle implemented in TypeScript with configurable pieces and board size. This was done for fun to better understand this interesting problem related to "exact cover" problem. In order to solve the "exact cover" problem here, I used [dlxlibjs](https://github.com/taylorjg/dlxlibjs) library from @taylorjg, as he did in his example.
+Polyomino solver for polyomino puzzle implemented in TypeScript with configurable pieces and board size. This was done for fun to better understand this interesting problem related to "exact cover" problem. In order to solve the "exact cover" problem here, I used [dlxlibjs](https://github.com/taylorjg/dlxlibjs) library from [taylorjg](https://github.com/taylorjg), as he did in his example.
 
 #####  [See the demo](https://dmarchuk.github.io/polyomino-puzzle-solver/)
 
