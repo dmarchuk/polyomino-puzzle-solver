@@ -6,6 +6,13 @@ Polyomino solver for polyomino puzzle implemented in TypeScript with configurabl
 
 #####  [See the demo](https://dmarchuk.github.io/polyomino-puzzle-solver/)
 
+If you're more interested in the exact cover/dancing links, here are some resources that I found interesting:
+
+- [Stanford Lecture: Don Knuth—"Dancing Links" (2018)](https://www.youtube.com/watch?v=_cR9zDlvP88)
+- [Nice writeup on dancing links and algorithm X](https://garethrees.org/2007/06/10/zendoku-generation/#section-4)
+- [Exact cover writeup (examples with python)](https://garethrees.org/2015/11/09/exact-cover/)
+- [Solve the Pentomino puzzle with C++ and dancing links](https://www.codeproject.com/Articles/271634/Puzzle-Solver)
+
 ## How to get set up
 ```sh
 # Clone the repository
